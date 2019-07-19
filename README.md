@@ -1,68 +1,144 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
 
-## Available Scripts
+# React | useState
 
-In the project directory, you can run:
+## Introduction
 
-### `npm start`
+You already know how to work with old React (with classes) and how React hooks has changed the frontend developer environment.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+In this exercsie wi will use **Create React App** and we will handle a _Counter_ and a simple _Form_ with useState.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+![](https://media.giphy.com/media/hVVLTXhMm4Q1souBHU/giphy.gif)
 
-### `npm test`
+## Requirements
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Fork this repo
+- Clone this repo
 
-### `npm run build`
+## Submission
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Upon completion, run the following commands:
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+  ```
+  git add .
+  git commit -m "your doubts"
+  git push origin master
+  ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Create Pull Request so your TAs can check up your work.
 
-### `npm run eject`
+## Instructions
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+We will using the _Create React App CLI_, but don't worry about it, we already started the project :wink:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**DON'T FORGET, BY DEFAULT CRA INITIALIZE GIT IN THE PROJECT**
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Install the dependencies
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+$ npm install
+or
+$ yarn install
+```
 
-## Learn More
+## Structure of our app
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Create the **`components`** folder inside the `src` folder.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Inside the components folder create two new components, **`Counter.js`** and **`Form.js`**
 
-### Code Splitting
+```
+lab-props-and-state
+│   node_modules
+│   public
+└─── src
+    └─── components
+    │   └─── Counter.js
+    │   └─── Form.js
+    └─── App.css
+    └─── App.js
+    └─── App.test.js
+    └─── index.css
+    └─── index.js
+    └─── logo.svg
+    └─── serviceWorker.js
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Iteration 1 - Presentational components
 
-### Analyzing the Bundle Size
+Let's start with the basics: Let's put some pretty and _dumb_ HTML in our presentational components.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Counter.js
 
-### Making a Progressive Web App
+- This component should be a **function component**.
+- Should return only HTML:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+  - Return an `<h2>`, the value of the count must be in this field.
 
-### Advanced Configuration
+  - Return an increment `<button>`, this button should increment the count in 1.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+  - Return a decrement `<button>`, this button should decrement the count in 1.
 
-### Deployment
+- Since our component it's a dummie component and it's only for presentation purpose, should **recieve by props** the logic for
+  increment and decrement the count, and the count itself.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+### Form.js
 
-### `npm run build` fails to minify
+- This component should be a **function component**.
+- Should return only HTML:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+  - Return 3 `<input>`, don't forget to give them a name, respectively.
+
+  - Return 3 `<p>`, each _p_ should display the inputs value, respectively.
+
+## Iteration 2 - The logic
+
+Remember, there should always be only one component that manages the state of our application and through props can
+communicate the information to the components that are designed for that.
+
+So, let's do this. We will have all our logic in the `App.js`.
+
+- Our `App.js` should have an state using hooks, with the following values:
+
+```js
+const [count, setCount] = useState(0)
+const [name, setName] = useState('')
+const [surname, setSurname] = useState('')
+const [age, setAge] = useState('')
+```
+
+- Should be a function that can manage the increment of or counter, called **`increment`**.
+
+- Should have a function that can manage the decrement of our counter, called **`decrement`**.
+
+- Should have a function that can manage the values of our inputs, called **`handleChange`**.
+
+**Remember which method we use to update our state**
+
+## Iteration 3 - Magic!
+
+In the **App.js**, you should return the `<Counter/>` component and the `<Form/>` component. **Don't forget to pass the
+necessary props to these components**.
+
+It should looks like this:
+
+```jsx
+...
+
+render() {
+    <div>
+        <Counter {/* Here should be magic! (props) */} />
+        <Form {/* Here should be magic! (props) */} />
+    </div>
+}
+
+...
+```
+
+## Iteration 4 - Styles
+
+Don't forget the CSS, add some styles to our application to make it look better.
+
+Happy coding! ❤️
+
+By: DiuriVJ :shipit:
